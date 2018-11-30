@@ -15,9 +15,10 @@ function passString(event) {
     console.log({ inputStr });
 
     // Make API call, get data, filter data with input string
-    const data = searchData(inputStr);
-    // Generate list items with filtered data array 
-    generateListItems(data);
+    // searchData returns a promise that resolves to a filtered array
+    searchData(inputStr)
+         // Generate list items with filtered data array 
+        .then( (data) => generateListItems(data));
 }
 
 function generateListItems(data) {
