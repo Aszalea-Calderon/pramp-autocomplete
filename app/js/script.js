@@ -22,8 +22,13 @@ function passString(event) {
 }
 
 function generateListItems(data) {
+    // Select parent node
     const ul = document.querySelector('.results');
 
+    // Clear old autocomplete suggestions
+    ul.innerHTML = '';
+
+    // Generate list elements for every item in array
     data.map( elm => {
         const li = document.createElement('li');
         li.innerHTML = elm.title;
