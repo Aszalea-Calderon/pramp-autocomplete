@@ -14,11 +14,20 @@ function passString(event) {
     let inputStr = event.target.value;
     console.log({ inputStr });
 
-    // Make API call, get data, filter data with input string
-    // searchData returns a promise that resolves to a filtered array
-    searchData(inputStr)
-         // Generate list items with filtered data array 
-        .then( (data) => generateListItems(data));
+    // If the input string is not empty, then filter data with input string
+    if (inputStr.length > 0) {
+        // Make API call, get data, filter data with input string
+        // searchData returns a promise that resolves to a filtered array
+        searchData(inputStr)
+            // After promise successfully resolves, call generateListItems()
+            // Generate list items with filtered data array 
+            .then( (data) => generateListItems(data));
+    }
+
+    // If the input string is empty, then clear autocomplete suggestions
+    else {
+        generateListItems([]);
+    }
 }
 
 function generateListItems(data) {
